@@ -1,0 +1,779 @@
+
+lenovo@Lenovo-PC MINGW64 ~
+$ mkdir git-tutorial
+
+lenovo@Lenovo-PC MINGW64 ~
+$ cd git-tutorial
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial
+$ git init
+Initialized empty Git repository in C:/Users/lenovo/git-tutorial/.git/
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ touch README.md
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git add README.md
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   README.md
+
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git log
+fatal: your current branch 'master' does not have any commits yet
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git commit -m "First commit"
+[master (root-commit) 11a0551] First commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 README.md
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git log
+commit 11a05511aa0222cab3fa56f9b800187276464bcc (HEAD -> master)
+Author: Zhangzhe <yjzheng2017@163.com>
+Date:   Mon Feb 25 11:08:54 2019 +0800
+
+    First commit
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git diff
+diff --git a/README.md b/README.md
+index e69de29..767bd5e 100644
+--- a/README.md
++++ b/README.md
+@@ -0,0 +1 @@
++# Git<BD>?<CC>
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git add README.md
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git diff HEDA
+fatal: ambiguous argument 'HEDA': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git diff HEAD
+diff --git a/README.md b/README.md
+index e69de29..767bd5e 100644
+--- a/README.md
++++ b/README.md
+@@ -0,0 +1 @@
++# Git<BD>?<CC>
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git commit -m "Add index"
+[master 7f5fa23] Add index
+ 1 file changed, 1 insertion(+)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git log
+commit 7f5fa23d5e4763a86c7cedcc1b98e9467b7ccc32 (HEAD -> master)
+Author: Zhangzhe <yjzheng2017@163.com>
+Date:   Mon Feb 25 11:16:51 2019 +0800
+
+    Add index
+
+commit 11a05511aa0222cab3fa56f9b800187276464bcc
+Author: Zhangzhe <yjzheng2017@163.com>
+Date:   Mon Feb 25 11:08:54 2019 +0800
+
+    First commit
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git branch
+* master
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git checkout -b feature-A
+Switched to a new branch 'feature-A'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-A)
+$ git branch
+* feature-A
+  master
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-A)
+$ git add README.md
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-A)
+$ git commit -m "Add feature-A"
+[feature-A 6ff91d1] Add feature-A
+ 1 file changed, 2 insertions(+)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-A)
+$ git checkout master
+Switched to branch 'master'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git log
+commit 7f5fa23d5e4763a86c7cedcc1b98e9467b7ccc32 (HEAD -> master)
+Author: Zhangzhe <yjzheng2017@163.com>
+Date:   Mon Feb 25 11:16:51 2019 +0800
+
+    Add index
+
+commit 11a05511aa0222cab3fa56f9b800187276464bcc
+Author: Zhangzhe <yjzheng2017@163.com>
+Date:   Mon Feb 25 11:08:54 2019 +0800
+
+    First commit
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git checkout -
+Switched to branch 'feature-A'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-A)
+$ git checkout master
+Switched to branch 'master'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git merge --no--ff feature-A
+error: unknown option `no--ff'
+usage: git merge [<options>] [<commit>...]
+   or: git merge --abort
+   or: git merge --continue
+
+    -n                    do not show a diffstat at the end of the merge
+    --stat                show a diffstat at the end of the merge
+    --summary             (synonym to --stat)
+    --log[=<n>]           add (at most <n>) entries from shortlog to merge commit message
+    --squash              create a single commit instead of doing a merge
+    --commit              perform a commit if the merge succeeds (default)
+    -e, --edit            edit message before committing
+    --ff                  allow fast-forward (default)
+    --ff-only             abort if fast-forward is not possible
+    --rerere-autoupdate   update the index with reused conflict resolution if possible
+    --verify-signatures   verify that the named commit has a valid GPG signature
+    -s, --strategy <strategy>
+                          merge strategy to use
+    -X, --strategy-option <option=value>
+                          option for selected merge strategy
+    -m, --message <message>
+                          merge commit message (for a non-fast-forward merge)
+    -v, --verbose         be more verbose
+    -q, --quiet           be more quiet
+    --abort               abort the current in-progress merge
+    --continue            continue the current in-progress merge
+    --allow-unrelated-histories
+                          allow merging unrelated histories
+    --progress            force progress reporting
+    -S, --gpg-sign[=<key-id>]
+                          GPG sign commit
+    --overwrite-ignore    update ignored files (default)
+    --signoff             add Signed-off-by:
+    --verify              verify commit-msg hook
+
+Merge made by the 'recursive' strategy.
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git log --graph
+*   commit 91c800b63c7e4775a4b17b92568a35e74a992e8a (HEAD -> master)
+|\  Merge: 7f5fa23 6ff91d1
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 11:59:40 2019 +0800
+| |
+| |     Merge branch 'feature-A'
+| |
+| * commit 6ff91d1d0edbd8b15a712356cb976b267c54482a (feature-A)
+|/  Author: Zhangzhe <yjzheng2017@163.com>
+|   Date:   Mon Feb 25 11:50:23 2019 +0800
+|
+|       Add feature-A
+|
+* commit 7f5fa23d5e4763a86c7cedcc1b98e9467b7ccc32
+| Author: Zhangzhe <yjzheng2017@163.com>
+| Date:   Mon Feb 25 11:16:51 2019 +0800
+|
+|     Add index
+|
+* commit 11a05511aa0222cab3fa56f9b800187276464bcc
+  Author: Zhangzhe <yjzheng2017@163.com>
+  Date:   Mon Feb 25 11:08:54 2019 +0800
+
+      First commit
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git reset --hard 7f5fa23d5e4763a86c7cedcc1b98e9467b7ccc32
+HEAD is now at 7f5fa23 Add index
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git log --graph
+* commit 7f5fa23d5e4763a86c7cedcc1b98e9467b7ccc32 (HEAD -> master)
+| Author: Zhangzhe <yjzheng2017@163.com>
+| Date:   Mon Feb 25 11:16:51 2019 +0800
+|
+|     Add index
+|
+* commit 11a05511aa0222cab3fa56f9b800187276464bcc
+  Author: Zhangzhe <yjzheng2017@163.com>
+  Date:   Mon Feb 25 11:08:54 2019 +0800
+
+      First commit
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git checkout -b fix-B
+Switched to a new branch 'fix-B'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (fix-B)
+$ git add README.md
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (fix-B)
+$ git commit -m "Fix B"
+[fix-B 4b4c0be] Fix B
+ 1 file changed, 2 insertions(+)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (fix-B)
+$ git reflog
+4b4c0be (HEAD -> fix-B) HEAD@{0}: commit: Fix B
+7f5fa23 (master) HEAD@{1}: checkout: moving from master to fix-B
+7f5fa23 (master) HEAD@{2}: reset: moving to 7f5fa23d5e4763a86c7cedcc1b98e9467b7ccc32
+91c800b HEAD@{3}: merge feature-A: Merge made by the 'recursive' strategy.
+7f5fa23 (master) HEAD@{4}: checkout: moving from feature-A to master
+6ff91d1 (feature-A) HEAD@{5}: checkout: moving from master to feature-A
+7f5fa23 (master) HEAD@{6}: checkout: moving from feature-A to master
+6ff91d1 (feature-A) HEAD@{7}: commit: Add feature-A
+7f5fa23 (master) HEAD@{8}: checkout: moving from master to feature-A
+7f5fa23 (master) HEAD@{9}: commit: Add index
+11a0551 HEAD@{10}: commit (initial): First commit
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (fix-B)
+$ git checkout master
+Switched to branch 'master'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git reset --hard 91c800b
+HEAD is now at 91c800b Merge branch 'feature-A'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git merge --no-f fix-B
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master|MERGING)
+$ git add README.md
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master|MERGING)
+$ git commit -m "Fix conflict"
+[master 72b82a0] Fix conflict
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git commit -amend
+error: did you mean `--amend` (with two dashes ?)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git commit --amend
+[master 11eccac] Fix conflict
+ Date: Mon Feb 25 13:18:13 2019 +0800
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git log --graph
+*   commit 11eccacdef31ab84dfcc14ca0e32a17a907abec1 (HEAD -> master)
+*   commit 11eccacdef31ab84dfcc14ca0e32a17a907abec1 (HEAD -> master)
+|\  Merge: 91c800b 4b4c0be
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 13:18:13 2019 +0800
+*   commit 11eccacdef31ab84dfcc14ca0e32a17a907abec1 (HEAD -> master)
+|\  Merge: 91c800b 4b4c0be
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 13:18:13 2019 +0800
+| |
+| |     Fix conflict
+| |
+| * commit 4b4c0be3fbf9026cc745cf52a57172a26772ee31 (fix-B)
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 12:19:29 2019 +0800
+| |
+| |
+*   commit 11eccacdef31ab84dfcc14ca0e32a17a907abec1 (HEAD -> master)
+|\  Merge: 91c800b 4b4c0be
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 13:18:13 2019 +0800
+| |
+| |     Fix conflict
+| |
+| * commit 4b4c0be3fbf9026cc745cf52a57172a26772ee31 (fix-B)
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 12:19:29 2019 +0800
+| |
+*   commit 11eccacdef31ab84dfcc14ca0e32a17a907abec1 (HEAD -> master)
+|\  Merge: 91c800b 4b4c0be
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 13:18:13 2019 +0800
+| |
+| |     Fix conflict
+| |
+| * commit 4b4c0be3fbf9026cc745cf52a57172a26772ee31 (fix-B)
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 12:19:29 2019 +0800
+| |
+| |     Fix B
+| |
+* |   commit 91c800b63c7e4775a4b17b92568a35e74a992e8a
+|\ \  Merge: 7f5fa23 6ff91d1
+| |/  Author: Zhangzhe <yjzheng2017@163.com>
+|/|   Date:   Mon Feb 25 11:59:40 2019 +0800
+| |
+| |       Merge branch 'feature-A'
+| |
+| * commit 6ff91d1d0edbd8b15a712356cb976b267c54482a (feature-A)
+|/  Author: Zhangzhe <yjzheng2017@163.com>
+|   Date:   Mon Feb 25 11:50:23 2019 +0800
+|
+|       Add feature-A
+|
+* commit 7f5fa23d5e4763a86c7cedcc1b98e9467b7ccc32
+| Author: Zhangzhe <yjzheng2017@163.com>
+| Date:   Mon Feb 25 11:16:51 2019 +0800
+|
+|     Add index
+|
+* commit 11a05511aa0222cab3fa56f9b800187276464bcc
+  Author: Zhangzhe <yjzheng2017@163.com>
+  Date:   Mon Feb 25 11:08:54 2019 +0800
+
+      First commit
+(END)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git checkout -b feature-C
+Switched to a new branch 'feature-C'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-C)
+$ git commit -am "Add feature-C"
+[feature-C b0848b7] Add feature-C
+ 1 file changed, 2 insertions(+)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-C)
+$ git diff
+diff --git a/README.md b/README.md
+index d1370a9..0fceffd 100644
+--- a/README.md
++++ b/README.md
+@@ -5,4 +5,4 @@
+
+ -fix-B
+
+--faeture-C
+\ No newline at end of file
++-feature-C
+\ No newline at end of file
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-C)
+$ git commit -am "Fix typo"
+[feature-C 7f6a4e1] Fix typo
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-C)
+$ git rebase -i HEAD~2
+Successfully rebased and updated refs/heads/feature-C.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-C)
+$ git log --graph
+* commit f365653e2606fa2a38082afce50c62ba2bf7a800 (HEAD -> feature-C)
+| Author: Zhangzhe <yjzheng2017@163.com>
+| Date:   Mon Feb 25 13:28:53 2019 +0800
+|
+|     Add feature-C
+|
+*   commit 11eccacdef31ab84dfcc14ca0e32a17a907abec1 (master)
+|\  Merge: 91c800b 4b4c0be
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 13:18:13 2019 +0800
+| |
+| |     Fix conflict
+| |
+| * commit 4b4c0be3fbf9026cc745cf52a57172a26772ee31 (fix-B)
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 12:19:29 2019 +0800
+| |
+* commit f365653e2606fa2a38082afce50c62ba2bf7a800 (HEAD -> feature-C)
+| Author: Zhangzhe <yjzheng2017@163.com>
+| Date:   Mon Feb 25 13:28:53 2019 +0800
+|
+|     Add feature-C
+|
+*   commit 11eccacdef31ab84dfcc14ca0e32a17a907abec1 (master)
+|\  Merge: 91c800b 4b4c0be
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 13:18:13 2019 +0800
+| |
+| |     Fix conflict
+| |
+| * commit 4b4c0be3fbf9026cc745cf52a57172a26772ee31 (fix-B)
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 12:19:29 2019 +0800
+| |
+| |     Fix B
+| |
+* |   commit 91c800b63c7e4775a4b17b92568a35e74a992e8a
+|\ \  Merge: 7f5fa23 6ff91d1
+| |/  Author: Zhangzhe <yjzheng2017@163.com>
+|/|   Date:   Mon Feb 25 11:59:40 2019 +0800
+| |
+| |       Merge branch 'feature-A'
+| |
+| * commit 6ff91d1d0edbd8b15a712356cb976b267c54482a (feature-A)
+|/  Author: Zhangzhe <yjzheng2017@163.com>
+|   Date:   Mon Feb 25 11:50:23 2019 +0800
+|
+|       Add feature-A
+|
+* commit 7f5fa23d5e4763a86c7cedcc1b98e9467b7ccc32
+| Author: Zhangzhe <yjzheng2017@163.com>
+| Date:   Mon Feb 25 11:16:51 2019 +0800
+|
+|     Add index
+|
+* commit 11a05511aa0222cab3fa56f9b800187276464bcc
+  Author: Zhangzhe <yjzheng2017@163.com>
+  Date:   Mon Feb 25 11:08:54 2019 +0800
+
+      First commit
+(END)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-C)
+$ git checkout master
+Switched to branch 'master'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git merge --no-ff feature-C
+Merge made by the 'recursive' strategy.
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git log --graph
+*   commit cd10074c41caccbc0e145f8c073c674b75752fc9 (HEAD -> master)
+|\  Merge: 11eccac f365653
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 13:36:48 2019 +0800
+| |
+| |     Merge branch 'feature-C'
+| |
+| * commit f365653e2606fa2a38082afce50c62ba2bf7a800 (feature-C)
+|/  Author: Zhangzhe <yjzheng2017@163.com>
+|   Date:   Mon Feb 25 13:28:53 2019 +0800
+|
+|       Add feature-C
+|
+*   commit 11eccacdef31ab84dfcc14ca0e32a17a907abec1
+|\  Merge: 91c800b 4b4c0be
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 13:18:13 2019 +0800
+| |
+| |     Fix conflict
+| |
+| * commit 4b4c0be3fbf9026cc745cf52a57172a26772ee31 (fix-B)
+| | Author: Zhangzhe <yjzheng2017@163.com>
+| | Date:   Mon Feb 25 12:19:29 2019 +0800
+| |
+| |     Fix B
+| |
+* |   commit 91c800b63c7e4775a4b17b92568a35e74a992e8a
+|\ \  Merge: 7f5fa23 6ff91d1
+| |/  Author: Zhangzhe <yjzheng2017@163.com>
+|/|   Date:   Mon Feb 25 11:59:40 2019 +0800
+| |
+| |       Merge branch 'feature-A'
+| |
+| * commit 6ff91d1d0edbd8b15a712356cb976b267c54482a (feature-A)
+|/  Author: Zhangzhe <yjzheng2017@163.com>
+|   Date:   Mon Feb 25 11:50:23 2019 +0800
+|
+|       Add feature-A
+|
+* commit 7f5fa23d5e4763a86c7cedcc1b98e9467b7ccc32
+| Author: Zhangzhe <yjzheng2017@163.com>
+| Date:   Mon Feb 25 11:16:51 2019 +0800
+|
+|     Add index
+|
+* commit 11a05511aa0222cab3fa56f9b800187276464bcc
+  Author: Zhangzhe <yjzheng2017@163.com>
+  Date:   Mon Feb 25 11:08:54 2019 +0800
+
+      First commit
+(END)
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$
+
+
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git remote add origin git@github.com/Zhang3zhe/git-tutorial.git
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git push -u origin master
+fatal: 'git@github.com/Zhang3zhe/git-tutorial.git' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git remote add origin https://github.com/Zhang3zhe/git-tutorial.git
+fatal: remote origin already exists.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git push -u origin master
+fatal: 'git@github.com/Zhang3zhe/git-tutorial.git' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git push -u origin master
+fatal: 'git@github.com/Zhang3zhe/git-tutorial.git' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git remote add origin https://github.com/Zhang3zhe/git-tutorial.git
+fatal: remote origin already exists.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git push -u origin master
+fatal: 'git@github.com/Zhang3zhe/git-tutorial.git' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git remote rm origin
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git remote add origin https://github.com/Zhang3zhe/git-tutorial.git
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git push -u origin master
+fatal: HttpRequestException encountered.
+   An error occurred while sending the request.
+Username for 'https://github.com':
+remote: Anonymous access to Zhang3zhe/git-tutorial.git denied.
+fatal: Authentication failed for 'https://github.com/Zhang3zhe/git-tutorial.git/'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git remote add origin https://github.com/Zhang3zhe/git-tutorial.git
+fatal: remote origin already exists.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git push -u origin master
+fatal: HttpRequestException encountered.
+   An error occurred while sending the request.
+Username for 'https://github.com':
+remote: Anonymous access to Zhang3zhe/git-tutorial.git denied.
+fatal: Authentication failed for 'https://github.com/Zhang3zhe/git-tutorial.git/'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git remote add origin git@github.com:Zhang3zhe/git-tutorial.git
+fatal: remote origin already exists.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ ^C
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ $ git remote rm origin
+bash: $: command not found
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ $ git remote rm origin
+bash: $: command not found
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git remote rm origin
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git remote add origin git@github.com:Zhang3zhe/git-tutorial.git
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git push -u origin master
+Warning: Permanently added the RSA host key for IP address '13.250.177.223' to the list of known hosts.
+Enter passphrase for key '/c/Users/lenovo/.ssh/id_rsa':
+Counting objects: 20, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (20/20), 1.50 KiB | 61.00 KiB/s, done.
+Total 20 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), done.
+To github.com:Zhang3zhe/git-tutorial.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (master)
+$ git checkout -b feature-D
+Switched to a new branch 'feature-D'
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-D)
+$ git push -u origin feature-D
+Enter passphrase for key '/c/Users/lenovo/.ssh/id_rsa':
+Total 0 (delta 0), reused 0 (delta 0)
+remote:
+remote: Create a pull request for 'feature-D' on GitHub by visiting:
+remote:      https://github.com/Zhang3zhe/git-tutorial/pull/new/feature-D
+remote:
+To github.com:Zhang3zhe/git-tutorial.git
+ * [new branch]      feature-D -> feature-D
+Branch 'feature-D' set up to track remote branch 'feature-D' from 'origin'.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-D)
+$
+
+
+
+=============================================================================================================
+
+
+
+lenovo@Lenovo-PC MINGW64 ~
+$ cd D:
+
+lenovo@Lenovo-PC MINGW64 /d
+$ git clone git@github.com:Zhang3zhe/git-tutorial.git
+Cloning into 'git-tutorial'...
+Enter passphrase for key '/c/Users/lenovo/.ssh/id_rsa':
+remote: Enumerating objects: 20, done.
+remote: Counting objects: 100% (20/20), done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 20 (delta 3), reused 20 (delta 3), pack-reused 0
+Receiving objects: 100% (20/20), done.
+Resolving deltas: 100% (3/3), done.
+
+lenovo@Lenovo-PC MINGW64 /d
+$ cd git-tutorial
+
+lenovo@Lenovo-PC MINGW64 /d/git-tutorial (master)
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/feature-D
+  remotes/origin/master
+
+lenovo@Lenovo-PC MINGW64 /d/git-tutorial (master)
+$ git checkout -b feature-D origin/feature-D
+Switched to a new branch 'feature-D'
+Branch 'feature-D' set up to track remote branch 'feature-D' from 'origin'.
+
+lenovo@Lenovo-PC MINGW64 /d/git-tutorial (feature-D)
+$ git diff
+diff --git a/README.md b/README.md
+index 0fceffd..8976e94 100644
+--- a/README.md
++++ b/README.md
+@@ -5,4 +5,6 @@
+
+ -fix-B
+
+--feature-C
+\ No newline at end of file
++-feature-C
++
++As another developer to add a line.
+
+lenovo@Lenovo-PC MINGW64 /d/git-tutorial (feature-D)
+$ git commit -am "Add feature-D"
+[feature-D 3996dea] Add feature-D
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+lenovo@Lenovo-PC MINGW64 /d/git-tutorial (feature-D)
+$ git push
+Enter passphrase for key '/c/Users/lenovo/.ssh/id_rsa':
+Counting objects: 3, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 316 bytes | 63.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To github.com:Zhang3zhe/git-tutorial.git
+   cd10074..3996dea  feature-D -> feature-D
+
+lenovo@Lenovo-PC MINGW64 /d/git-tutorial (feature-D)
+$ git push origin feature-D
+Enter passphrase for key '/c/Users/lenovo/.ssh/id_rsa':
+Everything up-to-date
+
+lenovo@Lenovo-PC MINGW64 /d/git-tutorial (feature-D)
+$
+
+
+
+
+
+===============================================================================================
+
+
+$  cd "C:\Users\lenovo\git-tutorial"
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-D)
+$ git pull 0rigin feature-D
+fatal: '0rigin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+lenovo@Lenovo-PC MINGW64 ~/git-tutorial (feature-D)
+$ git pull origin feature-D
+Enter passphrase for key '/c/Users/lenovo/.ssh/id_rsa':
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:Zhang3zhe/git-tutorial
+ * branch            feature-D  -> FETCH_HEAD
+   cd10074..3996dea  feature-D  -> origin/feature-D
+Updating cd10074..3996dea
+Fast-forward
+ README.md | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
