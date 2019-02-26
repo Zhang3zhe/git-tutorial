@@ -1,0 +1,91 @@
+
+lenovo@Lenovo-PC MINGW64 ~
+$ cd "D:MyGitHub"
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub
+$ git clone git@github.com:Zhang3zhe/first-pr.git
+Cloning into 'first-pr'...
+Enter passphrase for key '/c/Users/lenovo/.ssh/id_rsa':
+remote: Enumerating objects: 72, done.
+remote: Counting objects: 100% (72/72), done.
+remote: Compressing objects: 100% (50/50), done.
+remote: Total 7531 (delta 38), reused 46 (delta 22), pack-reused 7459
+Receiving objects: 100% (7531/7531), 2.09 MiB | 235.00 KiB/s, done.
+Resolving deltas: 100% (4605/4605), done.
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub
+$ cd first-pr
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub/first-pr (gh-pages)
+$ git branch -a
+* gh-pages
+  remotes/origin/HEAD -> origin/gh-pages
+  remotes/origin/feature/move-jquery-from-cdn-to-local
+  remotes/origin/gh-pages
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub/first-pr (gh-pages)
+$ git checkout -b work gh-pages
+Switched to a new branch 'work'
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub/first-pr (work)
+$ git branch -a
+  gh-pages
+* work
+  remotes/origin/HEAD -> origin/gh-pages
+  remotes/origin/feature/move-jquery-from-cdn-to-local
+  remotes/origin/gh-pages
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub/first-pr (work)
+$ ls
+images/  index.html  javascripts/  params.json  README.md  stylesheets/
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub/first-pr (work)
+$ git diff
+diff --git a/index.html b/index.html
+index 18dcf6c..16e313b 100644
+--- a/index.html
++++ b/index.html
+@@ -1340,6 +1340,7 @@
+ <p class="impression">我在2019年1月31日首次Pull Request</p>
+ <p class="impression">试一试啦~</p>
+ <p class="impression">这是我见过的最有趣的学习方式</p>
++<p class="impression">GitHub可真是个好东西呀！（yjzheng-2019/2/26）</p>
+
+ </section>
+
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub/first-pr (work)
+$ git add index.html
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub/first-pr (work)
+$ git commit -m "Add my impression"
+[work cd21b84] Add my impression
+ 1 file changed, 1 insertion(+)
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub/first-pr (work)
+$ git push origin work
+Enter passphrase for key '/c/Users/lenovo/.ssh/id_rsa':
+Counting objects: 3, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 364 bytes | 121.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote:
+remote: Create a pull request for 'work' on GitHub by visiting:
+remote:      https://github.com/Zhang3zhe/first-pr/pull/new/work
+remote:
+To github.com:Zhang3zhe/first-pr.git
+ * [new branch]      work -> work
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub/first-pr (work)
+$ git branch -a
+  gh-pages
+* work
+  remotes/origin/HEAD -> origin/gh-pages
+  remotes/origin/feature/move-jquery-from-cdn-to-local
+  remotes/origin/gh-pages
+  remotes/origin/work
+
+lenovo@Lenovo-PC MINGW64 /d/MyGitHub/first-pr (work)
+$
